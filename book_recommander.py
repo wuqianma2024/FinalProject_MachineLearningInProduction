@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import random
-import requests
 
 # Load your dataset
 df = pd.read_csv('books_dataset_with_images.csv')
@@ -26,36 +25,11 @@ def book_recommender():
         session_state.random_books = random.sample(range(len(df)), min(9, len(df)))
 
     # Display the title screen with a fixed 3x3 grid
-    st.subheader('Featured Books')
-
-    # Create a fixed 3x3 grid layout
-    for i in range(3):
-        columns = st.columns(3)  # 3 books per row
-        for j in range(3):
-            index = i * 3 + j
-            book = df.iloc[session_state.random_books[index]]
-            with columns[j]:
-                # Clickable box with book information and the fetched image
-                if st.button(f"**{book['Title']}** by {book['Author']}"):
-                    # Update the selected book in session state
-                    session_state.selected_book = book
-
-                st.image(book['cover_image'], use_column_width=True)  # Use the 'cover_image' column
-                st.write(f"Summary: {book['Summary'][:150]}...")  # Crop to 150 characters
-                st.markdown("---")  # Add a separator between books
-
-    # Display selected book details if available
-    if 'selected_book' in session_state and session_state.selected_book is not None:
-        st.subheader('Selected Book Details')
-        selected_book = session_state.selected_book
-        st.image(selected_book['cover_image'], use_column_width=True)  # Use the 'cover_image' column
-        st.title(f"**{selected_book['Title']}** by {selected_book['Author']}")
-        st.write("Full Summary:")
-        st.write(selected_book['Summary'])
-
-        # Close button to clear the selection
-        if st.button("Close"):
-            session_state.selected_book = None
+    if 'selected_book' not in session_state or session_state.selected_book is None:
+        st.subheader('Featured Books')
+        display_featured_books(session_state)
+    else:
+        display_selected_book(session_state)
 
     # Sidebar for user input
     st.sidebar.header('User Input')
@@ -86,6 +60,35 @@ def book_recommender():
                     st.markdown("---")  # Add a separator between books
         else:
             st.warning('No matching books found.')
+
+def display_featured_books(session_state):
+    # Create a fixed 3x3 grid layout
+    for i in range(3):
+        columns = st.columns(3)  # 3 books per row
+        for j in range(3):
+            index = i * 3 + j
+            book = df.iloc[session_state.random_books[index]]
+            with columns[j]:
+                # Clickable box with book information and the fetched image
+                if st.button(f"**{book['Title']}** by {book['Author']}"):
+                    # Update the selected book in session state
+                    session_state.selected_book = book
+
+                st.image(book['cover_image'], use_column_width=True)  # Use the 'cover_image' column
+                st.write(f"Summary: {book['Summary'][:150]}...")  # Crop to 150 characters
+                st.markdown("---")  # Add a separator between books
+
+def display_selected_book(session_state):
+    st.subheader('Selected Book Details')
+    selected_book = session_state.selected_book
+    st.image(selected_book['cover_image'], use_column_width=True)  # Use the 'cover_image' column
+    st.title(f"**{selected_book['Title']}** by {selected_book['Author']}")
+    st.write("Full Summary:")
+    st.write(selected_book['Summary'])
+
+    # Close button to clear the selection
+    if st.button("Close"):
+        session_state.selected_book = None
 
 if __name__ == '__main__':
     book_recommender()
