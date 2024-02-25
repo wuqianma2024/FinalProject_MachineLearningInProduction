@@ -81,8 +81,8 @@ def main():
     df = load_data('datasets/books_*.csv')
     
     # Load the saved KNN model and MultiLabelBinarizer instance
-    knn_model = load_knn_model('data/knn_model.joblib')
-    mlb_instance = load_mlb_instance('data/mlb_instance.joblib')
+    knn_model = load_knn_model('knn_model.joblib')
+    mlb_instance = load_mlb_instance('mlb_instance.joblib')
     
     # Initialize and transform corpus with TF-IDF
     tfidf_vectorizer, tfidf_matrix = initialize_tfidf_vectorizer(df['Summary'])
