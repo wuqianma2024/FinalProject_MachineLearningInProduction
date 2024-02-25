@@ -9,11 +9,6 @@ from sklearn.preprocessing import MultiLabelBinarizer
 
 import os
 
-# Ensure Streamlit uses the PORT environment variable in Heroku
-port = int(os.environ.get("PORT", 8501))
-os.environ["STREAMLIT_SERVER_PORT"] = str(port)
-
-
 
 # Function to load and concatenate data from all matching CSV files
 @st.cache_data
@@ -115,3 +110,8 @@ if __name__ == "__main__":
 
 
 
+"""
+# Ensure Streamlit uses the PORT environment variable in Heroku
+port = int(os.environ.get("PORT", 8501))
+os.environ["STREAMLIT_SERVER_PORT"] = str(port)
+"""
