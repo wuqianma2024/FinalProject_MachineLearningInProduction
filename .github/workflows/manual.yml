@@ -32,4 +32,4 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Push Docker image to GitHub Container Registry
-      run: docker push ghcr.io/${{ github.repository_owner }}/yourappname:latest
+      run: docker push ghcr.io/${{ github.repository_owner }}/books_recommend:latest
