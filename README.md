@@ -4,9 +4,10 @@
 ## Overview
 This project demonstrates the end-to-end process of deploying a machine learning model into production. Using Streamlit for the web interface and Heroku for hosting, it showcases how to operationalize a machine learning model, making it accessible via a web application.
 
+
 ## Features
-- **Machine Learning Model**: Utilizes a pre-trained model to perform predictions. (Specify the model and its use case)
-- **Streamlit Application**: Interactive web interface for model interaction.
+- **Machine Learning Model**: Utilizes a continuous trained KNN model to perform predictions. (Each time commit a change it will retrain the model )
+- **Streamlit Application**: Interactive web interface for latest model interaction.
 - **Docker Integration**: Containerized application deployment for consistency across development and production environments.
 - **CI/CD Pipeline**: Automated deployment pipeline using GitHub Actions, ensuring that the latest version of the app is always available.
 - **Heroku Hosting**: Leveraging Heroku's platform for deploying and hosting the application.
