@@ -20,16 +20,28 @@ To set up the project locally, follow these steps:
    cd FinalProject_MachineLearningInProduction
 
 
+
 2. **Install dependencies**
 
     ```bash
     pip install -r requirements.txt
 
+3. **Run test**
+    '''bash
+    pytest
 
-3.  **Run the Streamlit app**
+
+4.  **Run the Streamlit app**
 
     ```bash
     streamlit run app.py
+
+
+
+## docker image
+
+    '''bash
+    docker pull ghcr.io/wuqianma2024/books_recommend:latest
 
 ## Usage
 After installation, the Streamlit app can be accessed locally by navigating to http://localhost:8501 in your web browser. Interact with the machine learning model by inputting data into the provided fields and submitting it for prediction.
