@@ -1,3 +1,4 @@
+
 name: Deploy to Heroku
 
 on:
@@ -22,14 +23,9 @@ jobs:
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       run: |
         heroku container:push web -a $HEROKU_APP_NAME
-
     - name: Release the image
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       run: |
         heroku container:release web -a $HEROKU_APP_NAME
-
-
-
-
