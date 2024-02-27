@@ -15,7 +15,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN python app/knn_model_train.py
 
 # Make port 8501 available to the world outside this container
-EXPOSE 8501
+#EXPOSE 8501
 
 # Run the Streamlit app
-CMD ["streamlit", "run", "app/app.py"]
+# CMD ["streamlit", "run", "app/app.py"]
+# Heroku assigns a dynamic port, so we do not EXPOSE a port here
+
+# Run the Streamlit app, using the PORT environment variable provided by Heroku
+CMD sh -c 'streamlit run --server.port $PORT app/app.py'

@@ -7,7 +7,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 from joblib import load
 from sklearn.preprocessing import MultiLabelBinarizer
 
-import os
+
+#import os
+#port = int(os.environ.get("PORT", 8501))
 
 
 # Function to load and concatenate data from all matching CSV files
