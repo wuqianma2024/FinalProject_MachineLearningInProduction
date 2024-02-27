@@ -43,34 +43,18 @@ def find_similar_books_summary(user_input, tfidf_vectorizer, tfidf_matrix, df, t
     return similar_books
 
 
-# Recommend books based on genre using pre-trained KNN and MultiLabelBinarizer
+
 def recommend_books_genre(book_title, df, knn_model, mlb_instance, top_n=5):
-    try:
-        # Find the index of the book with the given title
-        book_idx = df[df['Title'] == book_title].index[0]
-
-        # Find genres of the given book. Ensure genres are properly cleaned/split as they were during model training
-        book_genres = df.at[book_idx, 'Genres'].split(',')
-
-        # Transform genres to the format expected by the KNN model using MultiLabelBinarizer
-        book_genres_encoded = mlb_instance.transform([book_genres])
-
-        # Ensure encoded genres match the KNN model's feature space
-        expected_features = knn_model.n_features_in_
-        if book_genres_encoded.shape[1] != expected_features:
-            raise ValueError(f"Encoded genres shape mismatch: {book_genres_encoded.shape[1]} features, expected {expected_features}.")
-
-        # Find nearest neighbors (including the book itself)
-        distances, indices = knn_model.kneighbors(book_genres_encoded, n_neighbors=top_n + 1)
-
-        # Exclude the first match (the book itself) and fetch indices of similar books
-        similar_books_indices = indices.flatten()[1:]
-        similar_books = df.iloc[similar_books_indices]
-        return similar_books
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        # Handle the error appropriately (e.g., return an empty DataFrame or a meaningful error message)
-        return pd.DataFrame()  # or any other fallback mechanism
+    # Find the index of the book with the given title
+    book_idx = df[df['Title'] == book_title].index[0]
+    # Find genres of the given book
+    book_genres = df.at[book_idx, 'Genres'].split(',')
+    book_genres_encoded = mlb_instance.transform([book_genres])
+    distances, indices = knn_model.kneighbors(book_genres_encoded, n_neighbors=top_n + 1)
+    # Exclude the first match (the book itself) and fetch indices of similar books
+    similar_books_indices = indices.flatten()[1:]
+    similar_books = df.iloc[similar_books_indices]
+    return similar_books
 
 
 def display_similar_books(similar_books):
@@ -99,8 +83,8 @@ def main():
     df = load_data('datasets/books_*.csv')
     
     # Load the saved KNN model and MultiLabelBinarizer instance
-    knn_model = load_knn_model('app/knn_model.joblib')
-    mlb_instance = load_mlb_instance('app/mlb_instance.joblib')
+    knn_model = load_knn_model('knn_model.joblib')
+    mlb_instance = load_mlb_instance('mlb_instance.joblib')
     
     # Initialize and transform corpus with TF-IDF
     tfidf_vectorizer, tfidf_matrix = initialize_tfidf_vectorizer(df['Summary'])
@@ -131,8 +115,3 @@ if __name__ == "__main__":
 
 
 
-"""
-# Ensure Streamlit uses the PORT environment variable in Heroku
-port = int(os.environ.get("PORT", 8501))
-os.environ["STREAMLIT_SERVER_PORT"] = str(port)
-"""
