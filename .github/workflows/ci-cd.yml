@@ -29,5 +29,17 @@ jobs:
         docker-compose push
 
 
+    - name: Login to Heroku Container Registry
+      run: heroku container:login
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
+    - name: Push Docker image to Heroku Container Registry and release
+      run: |
+        heroku container:push web -a ${{ secrets.HEROKU_APP_NAME }}
+        heroku container:release web -a ${{ secrets.HEROKU_APP_NAME }}
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+        
 
