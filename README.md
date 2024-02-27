@@ -54,6 +54,11 @@ GitHub Actions automates the testing and deployment of the Docker container to H
 Heroku hosts the deployed application, accessible via a public URL.
 For detailed steps on setting up the CI/CD pipeline and deploying to Heroku, refer to the heroku-deploy.yml file in the .github/workflows directory.
 
+We are not sure the problem in our heroku deployment.
+check our functionality here as an alternative:
+https://finalprojectmachinelearninginappuction-booksrecommend-present.streamlit.app/
+
+
 ## Contributing
 Contributions to improve the application are welcome. To contribute:
 

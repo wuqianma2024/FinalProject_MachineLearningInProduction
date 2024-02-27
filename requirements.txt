@@ -1,7 +1,6 @@
-flask
+scikit-learn
 numpy
 pandas
-scikit-learn
 pytest
 streamlit
 joblib
