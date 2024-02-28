@@ -64,7 +64,7 @@ def main():
     df, genres_encoded, mlb = encode_genres(df, 'Genres')
     
     # Train KNN model and save it along with the MultiLabelBinarizer instance
-    train_knn_and_save(df, genres_encoded,mlb，knn_path='app/knn_model.joblib', mlb_path='app/mlb_instance.joblib')
+    train_knn_and_save(df, genres_encoded,mlb)
     
 if __name__ == "__main__":
     main()
