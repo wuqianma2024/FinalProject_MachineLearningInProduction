@@ -59,13 +59,10 @@ check our functionality here as an alternative:
 https://finalprojectmachinelearninginappuction-booksrecommend-present.streamlit.app/
 
 
-## Contributing
-Contributions to improve the application are welcome. To contribute:
+## Contributed
+•	Wuqian MA: Work on the CI/CD pipeline setup, testing, deployment, monitoring, and presentation preparation.
+•	Kadidia COULIBALY: Work on model development, including implementing models and showing the possible issues with each model.
+•	Team Member 3: Working on data preprocessing, including data collection, cleaning, and splitting, an work on the application development using Streamlit and integrate the model for generating book recommendations.
 
-Fork the repository.
-Create a new branch for your feature (git checkout -b feature/AmazingFeature).
-Commit your changes (git commit -m 'Add some AmazingFeature').
-Push to the branch (git push origin feature/AmazingFeature).
-Open a pull request.
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
