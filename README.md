@@ -62,7 +62,11 @@ https://finalprojectmachinelearninginappuction-booksrecommend-present.streamlit.
 ## Contributed
 •	Wuqian MA: Work on the CI/CD pipeline setup, testing, deployment, monitoring, and presentation preparation.
 •	Kadidia COULIBALY: Work on model development, including implementing models and showing the possible issues with each model.
-•	Team Member 3: Working on data preprocessing, including data collection, cleaning, and splitting, an work on the application development using Streamlit and integrate the model for generating book recommendations.
+•	Sylvain VARLOT: Working on data preprocessing, including data collection, cleaning, and splitting, an work on the application development using Streamlit and integrate the model for generating book recommendations.
+
+Because our lfs has only 1 G limit of free space, kadidia can't push her notebook and model into github for this reason. She worked with us by discord showing the files and results. As she mentioned a normal CNN could be 10 more minutes to run and it's huge, so we think we should work on the CI/CD pipeline with a lighetr model to insure the whole process is working, like tf-idf for analyse the user-input to get related books, and then using KNN based on the genres of recommend books, to recommend 4 more books the user might like. Becuase we are not sure if the workflow can work, so we need short model training process to valid the workflow first. We didn't realize we could deploy model elsewhere and then connect to our app like an api. 
+
+We chose heroku for app deployment because it's free and github workflow friendly. We didn't choose aws and azure for its complicity and charge of fee.  
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
